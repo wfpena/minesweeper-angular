@@ -1,6 +1,6 @@
 <div @modal *ngIf="gameService.settingsVisible">
     <div @overlay class="modal-component">
-        <div @container style="background-color: #c0c0c0;width: 50%;padding: 8px;border: 1px solid black;">
+        <div @container class="modal-container">
             <p class="text-2xl font-bold">Settings</p>
             <label for="width" class="input-label">Width: <span class="font-normal">{{width.value}}</span></label>
             <input id="width" type="range" min="6" max="20" [formControl]="width" class="w-full" (change)="parametersChanged()">

@@ -110,10 +110,16 @@ html
 	background: black 
 	background-color: rgba(0, 0, 0, 0.5) 
 	z-index: 10 
+.modal-container
+	background-color: #c0c0c0
+	width: 50%
+	padding: 8px
+	border: 1px solid black
+	box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf
 .input-label 
 	display: block 
 	font-weight: bold 
-	margin-top: 4px 
+	margin-top: 21px 
 .font-bold 
 	font-weight: bold 
 .btn-group 
@@ -145,3 +151,19 @@ html
 .bg-no-repeat 
 	background-size: 200% 200% 
 	background-repeat: no-repeat 
+input[type='range']
+	background: transparent
+	box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d
+	border: 0px solid #000000
+	color: -internal-light-dark(rgb(16, 16, 16), rgb(255, 255, 255))
+	cursor: pointer
+	-webkit-appearance: none
+	margin-top: 2px
+	height: 2px
+input[type='range']::-webkit-slider-thumb
+	-webkit-appearance: none
+	appearance: none
+	height: 25px
+	width: 10px
+	background-color: #dfdfdf
+	box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf
