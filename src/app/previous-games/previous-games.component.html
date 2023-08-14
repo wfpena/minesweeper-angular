@@ -1,0 +1,18 @@
+<div class="ranks-container">
+  <div style="display: flex;align-items: center;justify-content: center;"><span style="font-weight: bold;">Previous Games</span>🏆</div>
+  <div class="rank-board">
+    <div *ngFor="let game of gameService.previousGames  | sortGames:'difficulty'" class="rank-cell">
+      <div style="display: flex;justify-content: space-between;width: 90%;">
+        <div><span style="font-weight: bold;">Start Time:</span> {{game.startTime | date:'MM-dd-YYYY hh:mm'}}</div>
+        <div><span style="font-weight: bold;">End Time:</span> {{game.endTime | date:'MM-dd-YYYY hh:mm'}}</div>
+      </div>
+      <div><span style="font-weight: bold;">Difficulty:</span> {{game.difficulty}}</div>
+      <div><span style="font-weight: bold;">Total Time Spent:</span> {{game.totalTime}}</div>
+      <div><span style="font-weight: bold;">Status:</span> {{game.status}}</div>
+    </div>
+  </div>
+  <div class="btn-group">
+    <button routerLink="/" class="btn-basic">Back To Game</button>
+    <button (click)="gameService.clearScoreBoard()" class="btn-basic">Clear Score Board</button>
+  </div>
+</div>

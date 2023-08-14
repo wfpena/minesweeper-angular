@@ -22,7 +22,7 @@ export class GameService {
   plays = 0;
   difficulty: GameDifficulty = 'easy';
   cells: Cell[] = [];
-  timeInterval: number = 0;
+  timeInterval = 0;
   settingsVisible = false;
   previousGamesVisible = false;
   previousGames: GameStats[] = [];

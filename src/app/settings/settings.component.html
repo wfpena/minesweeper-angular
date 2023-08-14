@@ -1,0 +1,25 @@
+<div @modal *ngIf="gameService.settingsVisible">
+    <div @overlay class="modal-component">
+        <div @container style="background-color: #c0c0c0;width: 50%;padding: 8px;border: 1px solid black;">
+            <p class="text-2xl font-bold">Settings</p>
+            <label for="width" class="input-label">Width: <span class="font-normal">{{width.value}}</span></label>
+            <input id="width" type="range" min="6" max="20" [formControl]="width" class="w-full" (change)="parametersChanged()">
+            <label for="height" class="input-label">Height: <span class="font-normal">{{height.value}}</span></label>
+            <input id="height" type="range" min="6" max="20" [formControl]="height" class="w-full" (change)="parametersChanged()">
+            <label for="bombs" class="input-label">Bombs: <span class="font-normal">{{bombs.value}}</span></label>
+            <input id="bombs" type="range" min="1" [max]="getMaxBombs()" [formControl]="bombs" class="w-full" (change)="parametersChanged()">
+            <label for="players" class="input-label">Players: <span class="font-normal">{{players.value}}</span></label>
+            <input id="players" type="range" min="1" max="4" [formControl]="players" class="w-full">
+            <form [formGroup]="difficultyForm">
+              <label for="difficulty" class="input-label">Difficulty: <span class="font-normal">{{difficultyForm.controls.difficulty.value}}</span></label>
+              <select id="difficulty" (change)="onDifficultyChange()" formControlName="difficulty">
+                  <option *ngFor="let d of ['easy','medium','hard','custom']" [ngValue]="d">{{ d }}</option>
+              </select>
+          </form>
+          <div class="btn-group">
+            <button (click)="saveSettings()" class="btn-basic">Save</button>
+            <button (click)="closeSettings()" class="btn-basic">Close</button>
+          </div>
+        </div>
+    </div>
+</div>
