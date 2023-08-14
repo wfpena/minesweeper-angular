@@ -1,1 +1,147 @@
-/* You can add global styles to this file, and also import other style files */
+$base-green: #008080
+$base-gray: rgb(174, 174, 174)
+
+body 
+	margin: 0 
+	line-height: inherit 
+.bg-base-gray 
+	background-color: $base-gray 
+.main-page 
+	background-color: $base-green 
+	min-height: 100vh 
+	display: flex 
+	align-items: center 
+	justify-content: flex-start 
+	flex-direction: column 
+.main-bg-title 
+	display: flex 
+	justify-content: center 
+	align-items: end 
+	flex-direction: column 
+	min-height: 75px 
+p 
+	margin: 0px 
+button, select 
+	text-transform: none 
+a 
+	text-decoration: none 
+	color: $base-green 
+button, [type='button'], [type='reset'], [type='submit'] 
+	background-color: transparent 
+	background-image: none 
+.main-title 
+	text-align: center 
+	width: 100% 
+	color: white 
+	font-weight: bold 
+	font-size: 30px 
+	font-style: italic 
+	&:first-of-type 
+		border-bottom: 2px solid transparent 
+		border-image: linear-gradient(0.25turn, rgba(255,249,34), rgba(255,0,128), rgba(56,2,155,0)) 
+		border-image-slice: 1 
+.flex-col 
+	flex-direction: column 
+html 
+	line-height: 1.5 
+	-webkit-text-size-adjust: 100% 
+	tab-size: 4 
+	font-family: 'MS Sans Serif' 
+	font-feature-settings: normal 
+	font-variation-settings: normal 
+*, ::before, ::after 
+	box-sizing: border-box 
+	border-width: 0 
+	border-style: solid 
+	border-color: #e5e7eb 
+.border 
+	border-width: 1px 
+.border-black 
+	border-color: rgb(0 0 0) 
+	--tw-border-opacity: 1 
+	border-color: rgb(0 0 0 / var(--tw-border-opacity)) 
+.text-4xl 
+	font-size: 2.25rem 
+	line-height: 2.5rem 
+.text-center 
+	text-align: center 
+.tile 
+	background-color: #bbb7b7 
+	border-left-color: rgb(191 219 254) 
+	border-right-color: rgb(23 37 84) 
+	border-left-color: rgb(191 219 254) 
+	border-top-color: rgb(191 219 254) 
+	border-bottom-color: rgb(23 37 84) 
+	&:hover 
+		background-color: rgb(96 165 250) 
+	&:active 
+		border-right-color: rgb(59 130 246) 
+		border-left-color: rgb(23 37 84) 
+		border-bottom-color: rgb(191 219 254) 
+		border-top-color: rgb(23 37 84) 
+		background-color: rgb(37 99 235) 
+.main-board 
+	display: grid 
+	grid-template-columns: repeat(10, 32px) 
+	grid-template-rows: repeat(10, 32px) 
+.btn-basic 
+	width: auto 
+	padding: 3px 
+	height: 29px 
+	margin: 2px 3px 
+	display: flex 
+	align-items: center 
+	justify-content: center 
+	font-weight: bold 
+	background-color: #c0c0c0 
+	border: 2px solid #7c7c7c 
+	border-top-color: #fff 
+	border-left-color: #fff 
+	cursor: pointer 
+.modal-component 
+	position: fixed 
+	display: flex 
+	width: 100% 
+	height: 100% 
+	top: 0 
+	left: 0 
+	align-items: center 
+	justify-content: center 
+	background: black 
+	background-color: rgba(0, 0, 0, 0.5) 
+	z-index: 10 
+.input-label 
+	display: block 
+	font-weight: bold 
+	margin-top: 4px 
+.font-bold 
+	font-weight: bold 
+.btn-group 
+	display: flex 
+	align-items: center 
+	justify-content: start 
+	margin-top: 22px 
+	width: 100% 
+.relative 
+	position: relative 
+.absolute 
+	position: absolute 
+.w-full 
+	width: 100% 
+.h-full 
+	height: 100% 
+.top-0 
+	top: 0 
+.left-0 
+	left: 0 
+.flex 
+	display: flex 
+.items-center 
+	align-items: center 
+.justify-center 
+	justify-content: center 
+.flex-grow 
+	flex-grow: 1 
+.bg-no-repeat 
+	background-size: 200% 200% 
+	background-repeat: no-repeat 
