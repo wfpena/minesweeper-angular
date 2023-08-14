@@ -5,7 +5,7 @@ import { GameService } from '../services/game.service';
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
-  styleUrls: ['./board.component.scss'],
+  styleUrls: ['./board.component.sass'],
   animations: [
     trigger('gradientOverlay', [
       transition(':enter', [

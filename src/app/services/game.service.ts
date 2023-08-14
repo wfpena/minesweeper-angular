@@ -3,13 +3,12 @@ import { Cell } from '../models/cell.model';
 import { Player } from '../models/player.model';
 import { GameDifficulty, GameStats } from '../models/game-stats.model';
 
-type GameState = 'run' | 'lose' | 'win';
+type GameState = 'run' | 'lose' | 'win' | 'initial';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
-  currentGameState: GameState;
   cellWidth = 32;
   cellHeight = 32;
   gridWidth = 10;
@@ -19,7 +18,6 @@ export class GameService {
   bombs = 10;
   flags = 0;
   players = 1;
-  playerStats: Player[];
   currentPlayer = 0;
   plays = 0;
   difficulty: GameDifficulty = 'easy';
@@ -28,7 +26,9 @@ export class GameService {
   settingsVisible = false;
   previousGamesVisible = false;
   previousGames: GameStats[] = [];
-  currentGameStats: Partial<GameStats>;
+  currentGameStats: Partial<GameStats> = {};
+  currentGameState: GameState = 'initial';
+  playerStats: Player[] = [];
 
   newGame() {
     this.loadPreviousGames();
