@@ -1,7 +1,10 @@
 <div class="ranks-container">
+  <div class="exit-bar">
+    <div class="exit-button" routerLink="/">X</div>
+  </div>
   <div style="display: flex;align-items: center;justify-content: center;"><span style="font-weight: bold;">Previous Games</span>🏆</div>
   <div class="rank-board">
-    <div *ngFor="let game of gameService.previousGames  | sortGames:'difficulty'" class="rank-cell">
+    <div *ngFor="let game of gameService.previousGames  | sortGames" class="rank-cell">
       <div style="display: flex;justify-content: space-between;width: 90%;">
         <div><span style="font-weight: bold;">Start Time:</span> {{game.startTime | date:'MM-dd-YYYY hh:mm'}}</div>
         <div><span style="font-weight: bold;">End Time:</span> {{game.endTime | date:'MM-dd-YYYY hh:mm'}}</div>
