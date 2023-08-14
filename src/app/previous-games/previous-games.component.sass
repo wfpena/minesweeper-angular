@@ -1,7 +1,7 @@
 .rank-cell 
 	display: flex 
 	flex-direction: column 
-	align-items: start 
+	align-items: flex-start 
 	justify-content: center 
 	border: 1px solid black 
 	padding: 5px 
@@ -16,16 +16,17 @@
 	background-color: #c0c0c0 
 	min-width: 500px 
 	padding: 5px 
+	box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf
 .rank-board 
 	display: flex 
 	width: 100% 
 	flex-direction: column 
-	justify-content: start 
-	align-items: start 
+	justify-content: flex-start 
+	align-items: flex-start 
 .exit-bar
 	display: flex
 	align-items: center
-	justify-content: end
+	justify-content: flex-end
 	width: 100%
 	background: linear-gradient(90deg,navy,#1084d0)
 	padding: 3px 2px 3px 3px
@@ -40,3 +41,17 @@
 	cursor: pointer
 .exit-button:hover
 	opacity: 0.5
+.rank-header
+	display: flex
+	align-items: center
+	justify-content: center
+.tag
+	color: white
+	border-radius: 10%
+	padding: 2px
+	&.easy
+		background-color: green
+	&.hard
+		background-color: red
+	&.medium
+		background-color: blue
