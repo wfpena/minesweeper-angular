@@ -71,7 +71,7 @@ export class SettingsComponent implements AfterViewChecked {
     public gameService: GameService
   ) { }
 
-  saveSettings() {
+  saveSettings(): void {
     this.gameService.settingsVisible = false;
     this.gameService.gameState.gridWidth = this.width.value || 10;
     this.gameService.gameState.gridHeight = this.height.value || 10;
@@ -81,8 +81,7 @@ export class SettingsComponent implements AfterViewChecked {
     this.gameService.newGame();
   }
 
-  closeSettings() {
-    this.gameService.settingsVisible = false;
+  closeSettings(): void {
     this.gameService.settingsVisible = false;
     this.width.setValue(this.gameService.gameState.gridWidth);
     this.height.setValue(this.gameService.gameState.gridHeight);
@@ -91,7 +90,7 @@ export class SettingsComponent implements AfterViewChecked {
     this.difficultyForm.controls['difficulty'].setValue(this.gameService.gameState.difficulty);
   }
 
-  getMaxBombs() {
+  getMaxBombs(): number {
     return Math.floor(this.width.value * this.height.value * 0.9);
   }
 
@@ -112,8 +111,8 @@ export class SettingsComponent implements AfterViewChecked {
       this.height.setValue(16);
       this.bombs.setValue(40);
     } else if (selectedDifficulty === 'hard') {
-      this.width.setValue(16);
-      this.height.setValue(30);
+      this.width.setValue(30);
+      this.height.setValue(16);
       this.bombs.setValue(99);
     }
   }
