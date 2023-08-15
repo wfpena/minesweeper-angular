@@ -37,9 +37,12 @@ The idea is to make it look and feel like the gameplay from Windows 98 with adde
 
 * Multiplayer support. Currently hardcoded for a max o 4 players but its easily changeable on the code.
 
-* Save / Loading of previous games
+* List of previous games
 
 * Difficulty levels (easy, medium and hard). With the addition of `custom` level for the player to choose the size of the board and amount of bombs.
+
+* Saving / Loading games (currently limited a single game).
+> NOTE: Currently limited to just saving 1 game, still didn't have the time to fully make and test the feature.
 
 ---
 
@@ -117,5 +120,13 @@ Run `yarn lint` to run the linter.
 
 TODOS:
 
-* Improve styling, the styles are very convuluted currently.
+* Code improvements:
+    * Remove code duplication from GameService
+    * Move save / load logic to another service
+    * Improve new game logic (a lot of duplicated code)
+* Improve CSS styles
+    * General removal of duplication
+    * remove inline styles
+* More code coverage / unit tests!
 * Improve multiplayer support to add possibility of adding the names of the players.
+* Improved load game functionality by allowing multiple games to be saved.

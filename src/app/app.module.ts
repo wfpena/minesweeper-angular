@@ -10,10 +10,12 @@ import { SettingsComponent } from './settings/settings.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { PreviousGamesComponent, PreviousGamesPipe } from './previous-games/previous-games.component';
 import { RouterModule, Routes } from '@angular/router';
+import { SavedGamesComponent } from './saved-games/saved-games.component';
 
 const routes: Routes = [
   { path: '', component: BoardComponent },
   { path: 'ranks', component: PreviousGamesComponent },
+  { path: 'saved-games', component: SavedGamesComponent },
 ];
 
 @NgModule({
@@ -25,6 +27,7 @@ const routes: Routes = [
     TopbarComponent,
     PreviousGamesComponent,
     PreviousGamesPipe,
+    SavedGamesComponent,
   ],
   imports: [
     BrowserModule,

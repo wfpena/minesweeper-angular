@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Cell } from '../models/cell.model';
 import { Player } from '../models/player.model';
 import { GameDifficulty, GameStats } from '../models/game-stats.model';
+import { SavedGame } from '../models/saved-game.model';
+import { Router } from '@angular/router';
 
 type GameState = 'run' | 'lose' | 'win' | 'initial';
 
@@ -9,6 +11,9 @@ type GameState = 'run' | 'lose' | 'win' | 'initial';
   providedIn: 'root'
 })
 export class GameService {
+
+  constructor(private router: Router){}
+
   cellWidth = 32;
   cellHeight = 32;
   gridWidth = 10;
@@ -29,6 +34,32 @@ export class GameService {
   currentGameStats: Partial<GameStats> = {};
   currentGameState: GameState = 'initial';
   playerStats: Player[] = [];
+
+  saveCurrentGame() {
+    if (this.currentGameState !== 'run' || !this.isTimerRunning) {
+      alert('No game in progress.');
+      return;
+    }
+    const currentGame: SavedGame = {
+      bombs: this.bombs,
+      cells: this.cells,
+      currentPlayer: this.currentPlayer,
+      flags: this.flags,
+      playerStats: this.playerStats,
+      plays: this.plays,
+      time: this.time,
+      cellWidth: this.cellWidth,
+      cellHeight: this.cellHeight,
+      gridHeight: this.gridHeight,
+      gridWidth: this.gridWidth,
+      currentGameStats: this.currentGameStats as GameStats,
+    }
+    // TODO: Add many saved games
+    // const savedGames = JSON.parse(localStorage.getItem('savedGames') || '[]') as Array<SavedGame>;
+    // savedGames.push(currentGame);
+    const savedGames: SavedGame[] = [currentGame];
+    localStorage.setItem('savedGames', JSON.stringify(savedGames));
+  }
 
   newGame() {
     this.loadPreviousGames();
@@ -65,6 +96,33 @@ export class GameService {
     if (gamesPlayed) {
       this.previousGames = JSON.parse(gamesPlayed);
     }
+  }
+
+  getSavedGames(): SavedGame[] {
+    return JSON.parse(localStorage.getItem('savedGames') || '[]');
+  }
+
+  loadSavedGame(savedGame: SavedGame): void {
+    this.players = savedGame.currentGameStats.players;
+    this.plays = savedGame.plays;
+    this.currentPlayer = savedGame.currentPlayer;
+    this.cells = savedGame.cells;
+    this.flags = savedGame.flags;
+    this.bombs = savedGame.bombs;
+    this.currentGameState = 'run';
+    this.time = savedGame.time;
+    this.difficulty = savedGame.currentGameStats.difficulty;
+    this.cellWidth = savedGame.cellWidth;
+    this.cellHeight = savedGame.cellHeight;
+    this.gridWidth = savedGame.gridWidth;
+    this.gridHeight = savedGame.gridHeight;
+    this.currentGameStats = savedGame.currentGameStats;
+    this.isTimerRunning = true;
+    window.clearInterval(this.timeInterval);
+    this.timeInterval = window.setInterval(() => {
+      this.time += 1;
+    }, 1000);
+    this.router.navigate(['/']);
   }
 
   restartTimer() {

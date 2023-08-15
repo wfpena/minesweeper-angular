@@ -6,6 +6,7 @@ import { CellComponent } from './cell/cell-button.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { PreviousGamesComponent, PreviousGamesPipe } from './previous-games/previous-games.component';
 import { RouterModule, Routes } from '@angular/router';
+import { SavedGamesComponent } from './saved-games/saved-games.component';
 
 const routes: Routes = [
   { path: '', component: BoardComponent },
@@ -14,7 +15,7 @@ const routes: Routes = [
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    declarations: [AppComponent, BoardComponent, SettingsComponent, CellComponent, TopbarComponent, PreviousGamesComponent, PreviousGamesPipe],
+    declarations: [AppComponent, BoardComponent, SettingsComponent, CellComponent, TopbarComponent, PreviousGamesComponent, PreviousGamesPipe, SavedGamesComponent],
     imports: [RouterModule.forRoot(routes)],
     providers: [PreviousGamesPipe],
   }));
