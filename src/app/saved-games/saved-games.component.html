@@ -6,11 +6,11 @@
   <div class="rank-board">
     <div *ngFor="let game of savedGames" class="rank-cell">
       <div style="display: flex;justify-content: space-between;width: 90%;">
-        <div><span style="font-weight: bold;">Start Time:</span> {{game.currentGameStats.startTime | date:'MM-dd-YYYY hh:mm'}}</div>
+        <div><span style="font-weight: bold;">Start Time:</span> {{game.startTime | date:'MM-dd-YYYY hh:mm'}}</div>
       </div>
       <div style="margin: 3px 0px 3px 0px;">
         <span style="font-weight: bold;">Difficulty:</span>
-        <span class="tag" [class]="game.currentGameStats.difficulty">{{game.currentGameStats.difficulty}}</span>
+        <span class="tag" [class]="game.difficulty">{{game.difficulty}}</span>
       </div>
       <div style="display: flex;width: 100%;">
         <div style="flex:2;"><span style="font-weight: bold;">Total Time Spent:</span> {{game.time}}</div>

@@ -27,17 +27,16 @@ import { GameService } from '../services/game.service';
   ]
 })
 export class BoardComponent {
-
   constructor(public gameService: GameService) {
-    if (gameService.currentGameState !== 'run') {
+    if (gameService.gameState.status !== 'running') {
       gameService.newGame();
     }
   }
 
   getBoardStyle() {
     return {
-      'grid-template-columns': `repeat(${this.gameService.gridWidth}, ${this.gameService.cellWidth}px)`,
-      'grid-template-rows': `repeat(${this.gameService.gridHeight}, ${this.gameService.cellHeight}px)`,
+      'grid-template-columns': `repeat(${this.gameService.gameState.gridWidth}, ${this.gameService.gameState.cellWidth}px)`,
+      'grid-template-rows': `repeat(${this.gameService.gameState.gridHeight}, ${this.gameService.gameState.cellHeight}px)`,
     }
   }
 }

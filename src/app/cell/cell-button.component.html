@@ -1,16 +1,16 @@
 <button 
-  *ngIf="cell && !cell.clicked && gameService.currentGameState === 'run'"
+  *ngIf="cell && !cell.clicked && gameService.gameState.status === 'running'"
   (click)="onClick()"
   (contextmenu)="onRightClick()"
-  class="border w-full h-full text-black font-bold tile"
-  
+  class="border w-full h-full text-black font-bold tile" 
+  [ngClass]="{'tile-flagged':cell.flag === 1}"
 >
     {{flagSymbol}}
 </button>
 <button
-  *ngIf="cell && !cell.clicked && gameService.currentGameState !== 'run'"
+  *ngIf="cell && !cell.clicked && gameService.gameState.status !== 'running'"
   disabled
-  class="w-full h-full text-black font-bold border border-t-blue-200 border-l-blue-200 border-b-blue-950 border-r-blue-950"
+  class="border w-full h-full text-black font-bold tile"
   style="background-color: #bbb7b7"
 >
     {{flagSymbol}}
@@ -20,7 +20,7 @@
   [ngStyle]="{color:symbolColor,backgroundColor:'rgb(113 111 111)'}" 
   disabled 
   style="background-color: rgb(29 78 216);border-color: rgb(30 64 175);"
-  class="w-full h-full font-bold border"
+  class="w-full h-full font-bold border tile"
   >
     {{symbol}}
 </button>

@@ -2,49 +2,50 @@
   <div class="board-header">
     <div>
         <p style="font-weight: bold;">
-          Difficulty: <button style="cursor: pointer;" class="tag" [class]="gameService.difficulty" (click)="gameService.settingsVisible = true">{{gameService.difficulty}}</button>
+          Difficulty: 
+          <button style="cursor: pointer;" class="tag" [class]="gameService.gameState.difficulty" (click)="gameService.settingsVisible = true">{{gameService.gameState.difficulty}}</button>
         </p>
     </div>
   </div>
   <div class="board-header">
     <div class="flex text-center justify-center">
-        <p style="font-size: small;font-weight: bold;">Players: {{gameService.players}}</p>
+        <p style="font-size: small;font-weight: bold;">Players: {{gameService.gameState.numberOfPlayers}}</p>
     </div>
   </div>
   <div>
     <div class="board-header">
       <div>
-          <p style="font-size: small;font-weight: bold;">Turn: Player {{gameService.currentPlayer}}</p>
+          <p style="font-size: small;font-weight: bold;">Turn: Player {{gameService.gameState.currentPlayer}}</p>
       </div>
     </div>
   </div>
   <div style="border: 1px solid black">
     <div class="board-header">
       <div>
-          <p *ngFor="let pl of gameService.playerStats" style="font-size: small;font-weight: bold;">Player: {{pl.name}} | Score: {{pl.score}}</p>
+        <p *ngFor="let pl of gameService.gameState.players" style="font-size: small;font-weight: bold;">Player: {{pl.name}} | Score: {{pl.score}}</p>
       </div>
     </div>
   </div>
   <div style="margin-bottom: 20px;display: flex;align-items: center;justify-content: center;">
       <div>
           <p class="stats-header">Bombs</p>
-          <p class="border border-black font-bold text-center bg-base-gray">{{gameService.bombs - gameService.flags}}</p>
+          <p class="border border-black font-bold text-center bg-base-gray">{{gameService.gameState.bombs - gameService.gameState.flags}}</p>
       </div>
       <div style="flex-grow: 1;"></div>
       <div>
           <p class="stats-header">Time</p>
-          <p class="border border-black font-bold text-center bg-base-gray">{{gameService.time}}</p>
+          <p class="border border-black font-bold text-center bg-base-gray">{{gameService.gameState.time}}</p>
       </div>
   </div>
   <div class="relative main-board border border-black" [ngStyle]="getBoardStyle()">
       <div 
         @gradientOverlay 
-        *ngIf="gameService.currentGameState !== 'run'" 
-        class="absolute top-0 left-0 w-full flex flex-col items-center justify-center h-full bg-[length:200%_200%] bg-[-10%_-10%] bg-no-repeat bg-gradient-to-br from-transparent from-45% via-white via-50% to-transparent to-55%">
+        *ngIf="gameService.gameState.status !== 'running'" 
+        class="absolute top-0 left-0 w-full flex flex-col items-center justify-center h-full">
       </div>
       <div 
         @stateOverlay 
-        *ngIf="gameService.currentGameState === 'lose'" 
+        *ngIf="gameService.gameState.status === 'lose'" 
         class="absolute top-0 left-0 w-full flex flex-col items-center justify-center h-full lose-backdrop"
       >
           <p class="text-4xl">☠️</p>
@@ -52,17 +53,17 @@
       </div>
       <div
         @stateOverlay 
-        *ngIf="gameService.currentGameState === 'win'"
+        *ngIf="gameService.gameState.status === 'win'"
         class="absolute top-0 left-0 w-full flex flex-col items-center justify-center h-full win-backdrop"
       >
           <div *ngFor="let rank of gameService.getWinner()" class="font-bold">{{rank}}</div>
       </div>
-      <app-cell-button *ngFor="let cell of gameService.cells; index as i" [cell]="cell" [index]="i"></app-cell-button>
+      <app-cell-button *ngFor="let cell of gameService.gameState.cells; index as i" [cell]="cell" [index]="i"></app-cell-button>
   </div>
   <div class="flex" style="cursor: pointer;">
       <button (click)="gameService.newGame()" class="new-game-btn">🔄New Game</button>
   </div>
-  <div *ngIf="gameService.currentGameState === 'run' && gameService.isTimerRunning" class="flex" style="cursor: pointer;">
+  <div *ngIf="gameService.gameState.status === 'running' && gameService.isTimerRunning" class="flex" style="cursor: pointer;">
     <button (click)="gameService.saveCurrentGame()" class="new-game-btn">💾Save Game</button>
 </div>
 </div>

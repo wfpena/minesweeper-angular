@@ -18,8 +18,7 @@ export class CellComponent implements OnInit {
   ngOnInit() {
     if (this.cell && this.cell.value == -1) {
       this.symbol = '💣';
-    }
-    else if (this.cell && this.cell.value > 0) {
+    } else if (this.cell && this.cell.value > 0) {
       this.symbol = this.cell.value.toString();
       switch (this.cell.value) {
         case 1: this.symbolColor = '#00ffff'; break;
