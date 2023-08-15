@@ -120,13 +120,9 @@ Run `yarn lint` to run the linter.
 
 TODOS:
 
-* Code improvements:
-    * Remove code duplication from GameService
-    * Move save / load logic to another service
-    * Improve new game logic (a lot of duplicated code)
 * Improve CSS styles
     * General removal of duplication
     * remove inline styles
-* More code coverage / unit tests!
+* More code coverage / unit tests
 * Improve multiplayer support to add possibility of adding the names of the players.
 * Improved load game functionality by allowing multiple games to be saved.

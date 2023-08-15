@@ -39,8 +39,6 @@ export class GameService {
     }
     const currentState = this.gameState;
     // TODO: Add many saved games
-    // const savedGames = JSON.parse(localStorage.getItem('savedGames') || '[]') as Array<SavedGame>;
-    // savedGames.push(currentGame);
     const savedGames: GameState[] = [currentState];
     localStorage.setItem('savedGames', JSON.stringify(savedGames));
   }
@@ -168,7 +166,7 @@ export class GameService {
 
   onCellClick(i: number) {
     if (this.gameState.cells[i].flag === 1) return;
-    if (this.gameState.cells[i].value === -1) this.endGame();
+    if (this.gameState.cells[i].value === -1) this.gameLost();
     const x = i%this.gameState.gridWidth;
     const y = Math.floor(i/this.gameState.gridWidth);
     this.clickCell(x, y, this.gameState.currentPlayer);
@@ -194,19 +192,21 @@ export class GameService {
     }
   }
 
-  checkIfWin() {
+  checkIfWin(): void {
     const clicked = this.gameState.clickedCells;
     if (clicked == this.gameState.cells.length - this.gameState.bombs) {
       this.gameState.status = 'win';
-      this.stopTimer();
-      this.revealBombs();
-      this.saveGameStats();
+      this.endGame();
     }
   }
 
-  endGame() {
+  gameLost(): void {
     this.gameState.players[this.gameState.currentPlayer].score = -1;
     this.gameState.status = 'lose';
+    this.endGame();
+  }
+
+  endGame() {
     this.stopTimer();
     this.revealBombs();
     this.saveGameStats();
@@ -224,36 +224,27 @@ export class GameService {
   }
 
   formatRank(rank: number): string {
-    const j = rank % 10, k = rank % 100;
-    if (j == 1 && k != 11) {
-        return rank + 'st';
-    }
-    if (j == 2 && k != 12) {
-        return rank + 'nd';
-    }
-    if (j == 3 && k != 13) {
-        return rank + 'rd';
-    }
+    const j = rank % 10;
+    const k = rank % 100;
+    if (j == 1 && k != 11) return rank + 'st';
+    if (j == 2 && k != 12) return rank + 'nd';
+    if (j == 3 && k != 13) return rank + 'rd';
     return rank + 'th';
   }
 
   getWinner(): string[] {
     if (this.gameState.numberOfPlayers === 1) {
-      if (this.gameState.status === 'win') {
-        return ['🥳', 'You Win'];
-      }
+      if (this.gameState.status === 'win') return ['🥳', 'You Win'];
       return ['Lost'];
     }
     const scoreMap = this.gameState.players.reduce<{ [key: string]: string[] }>((acc,val) => {
       const key = val.score;
-      if (!acc[key]) {
-        acc[key] = [];
-      }
+      if (!acc[key]) acc[key] = [];
       acc[key].push(val.name);
       return acc;
     }, {});
     const sortedResults = Object.entries(scoreMap);
-    sortedResults.sort((a,b)=>Number(b[0])-Number(a[0]));
+    sortedResults.sort((a,b)=> Number(b[0]) - Number(a[0]));
     return sortedResults.reduce((acc, val, idx) => {
       acc.push(`\n${this.formatRank(idx+1)}. Player ${val[1].join(' and ')}\n\n\n`)
       return acc;
