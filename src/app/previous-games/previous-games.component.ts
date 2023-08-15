@@ -1,10 +1,10 @@
 import { Component, Pipe, PipeTransform } from '@angular/core';
 import { GameService } from '../services/game.service';
-import { GameDifficulty, GameStats } from '../models/game-stats.model'
+import { GameDifficulty, GameState } from '../models/game-state.model'
 
 @Pipe({name: 'sortGames'})
 export class PreviousGamesPipe implements PipeTransform {
-  transform(array: GameStats[]): any[] {
+  transform(array: GameState[]): any[] {
     if (!Array.isArray(array)) {
       return [];
     }

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PreviousGamesComponent, PreviousGamesPipe } from './previous-games.component';
-import { GameStats } from '../models/game-stats.model';
+import { GameState } from '../models/game-state.model';
 
 describe('PreviousGamesComponent', () => {
   let component: PreviousGamesComponent;
@@ -29,19 +29,19 @@ describe('PreviousGamesComponent', () => {
 
     it('should sort by difficulty ascending - case 1', () => {
       const pipe = new PreviousGamesPipe();
-      const resp = pipe.transform([{id:'1', difficulty: 'easy'}] as GameStats[]);
+      const resp = pipe.transform([{id:'1', difficulty: 'easy'}] as GameState[]);
       expect(resp).toEqual([{id:'1', difficulty: 'easy'}]);
     });
 
     it('should sort by difficulty ascending - case 2', () => {
       const pipe = new PreviousGamesPipe();
-      const resp = pipe.transform([{id:'1', difficulty: 'easy'},{id:'2',difficulty: 'hard'}] as GameStats[]);
+      const resp = pipe.transform([{id:'1', difficulty: 'easy'},{id:'2',difficulty: 'hard'}] as GameState[]);
       expect(resp).toEqual([{id:'2',difficulty: 'hard'}, {id:'1', difficulty: 'easy'}]);
     });
 
     it('should sort by difficulty ascending - case 3', () => {
       const pipe = new PreviousGamesPipe();
-      const resp = pipe.transform([{id:'1', difficulty: 'easy'},{id:'2',difficulty: 'hard'},{id:'3',difficulty: 'hard'}] as GameStats[]);
+      const resp = pipe.transform([{id:'1', difficulty: 'easy'},{id:'2',difficulty: 'hard'},{id:'3',difficulty: 'hard'}] as GameState[]);
       expect(resp).toEqual([{id:'2',difficulty: 'hard'}, {id:'3',difficulty: 'hard'}, {id:'1', difficulty: 'easy'}]);
     });
 
@@ -49,7 +49,7 @@ describe('PreviousGamesComponent', () => {
       const pipe = new PreviousGamesPipe();
       const resp = pipe.transform([
         {id:'1', difficulty: 'easy', totalTime: 1},{id:'2',difficulty: 'hard',totalTime: 12},{id:'3',difficulty: 'hard',totalTime:2},{id:'4',difficulty:'medium',totalTime:0},{id:'5', difficulty: 'easy', totalTime: 12}
-      ] as GameStats[]);
+      ] as GameState[]);
       expect(resp).toEqual([
         {id:'3',difficulty: 'hard',totalTime:2},{id:'2',difficulty: 'hard',totalTime: 12},{id:'4',difficulty:'medium',totalTime:0},{id:'1', difficulty: 'easy', totalTime: 1},{id:'5', difficulty: 'easy', totalTime: 12}
       ]);
@@ -59,7 +59,7 @@ describe('PreviousGamesComponent', () => {
       const pipe = new PreviousGamesPipe();
       const resp = pipe.transform([
         {id:'1', difficulty: 'hard', totalTime: 1},{id:'2',difficulty: 'hard',totalTime: 12},{id:'3',difficulty: 'hard',totalTime:2},{id:'4',difficulty:'medium',totalTime:0},{id:'5', difficulty: 'easy', totalTime: 12}
-      ] as GameStats[]);
+      ] as GameState[]);
       expect(resp).toEqual([
         {id:'1', difficulty: 'hard', totalTime: 1},{id:'3',difficulty: 'hard',totalTime:2},{id:'2',difficulty: 'hard',totalTime: 12},{id:'4',difficulty:'medium',totalTime:0},{id:'5', difficulty: 'easy', totalTime: 12}
       ]);

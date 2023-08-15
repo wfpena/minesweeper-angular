@@ -72,14 +72,13 @@ html
 	border-left-color: rgb(191 219 254) 
 	border-top-color: rgb(191 219 254) 
 	border-bottom-color: rgb(23 37 84) 
-	&:hover 
-		background-color: rgb(96 165 250) 
-	&:active 
+	&:not(.tile-flagged):hover 
+		background-color: rgb(170 174 179)
+	&:not(.tile-flagged):active 
 		border-right-color: rgb(59 130 246) 
 		border-left-color: rgb(23 37 84) 
 		border-bottom-color: rgb(191 219 254) 
 		border-top-color: rgb(23 37 84) 
-		background-color: rgb(37 99 235) 
 .main-board 
 	display: grid 
 	grid-template-columns: repeat(10, 32px) 

@@ -16,22 +16,22 @@ describe('GameService', () => {
 
   describe('getWinner', () => {
     it('should return winner emoji and title when 1 player and win state', () => {
-      service.currentGameState = 'win';
-      service.players = 1;
+      service.gameState.status = 'win';
+      service.gameState.numberOfPlayers = 1;
       const resp = service.getWinner();
       expect(resp).toEqual(['🥳', 'You Win']);
     });
 
     it('should return Lost title when 1 player and lose state', () => {
-      service.currentGameState = 'lose';
-      service.players = 1;
+      service.gameState.status = 'lose';
+      service.gameState.numberOfPlayers = 1;
       const resp = service.getWinner();
       expect(resp).toEqual(['Lost']);
     });
 
     it('should get the correct rank order for 2 players', () => {
-      service.players = 2;
-      service.playerStats = [
+      service.gameState.numberOfPlayers = 2;
+      service.gameState.players = [
         {name: '0', score: -1},
         {name: '1', score: 0},
       ]
@@ -41,8 +41,8 @@ describe('GameService', () => {
     });
 
     it('should get the correct rank order for 3 players and tie', () => {
-      service.players = 2;
-      service.playerStats = [
+      service.gameState.numberOfPlayers = 2;
+      service.gameState.players = [
         {name: '0', score: -1},
         {name: '1', score: 0},
         {name: '2', score: 0},
@@ -53,8 +53,8 @@ describe('GameService', () => {
     });
 
     it('should get the correct rank order for 4 players and tie', () => {
-      service.players = 2;
-      service.playerStats = [
+      service.gameState.numberOfPlayers = 2;
+      service.gameState.players = [
         {name: '0', score: 1},
         {name: '1', score: 0},
         {name: '2', score: 0},
@@ -66,8 +66,8 @@ describe('GameService', () => {
     });
 
     it('should get the correct rank order for 4 players and multiple ties', () => {
-      service.players = 2;
-      service.playerStats = [
+      service.gameState.numberOfPlayers = 2;
+      service.gameState.players = [
         {name: '0', score: 1},
         {name: '1', score: 0},
         {name: '2', score: 0},

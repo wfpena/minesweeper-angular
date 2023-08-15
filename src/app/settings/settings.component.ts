@@ -60,11 +60,11 @@ import { GameService } from '../services/game.service';
   ],
 })
 export class SettingsComponent implements AfterViewChecked {
-  width = new FormControl(this.gameService.gridWidth, {nonNullable: true});
-  height = new FormControl(this.gameService.gridHeight, {nonNullable: true});
-  difficultyForm = new FormGroup({difficulty: new FormControl(this.gameService.difficulty)});
-  bombs = new FormControl(this.gameService.bombs);
-  players = new FormControl(this.gameService.players);
+  width = new FormControl(this.gameService.gameState.gridWidth, {nonNullable: true});
+  height = new FormControl(this.gameService.gameState.gridHeight, {nonNullable: true});
+  difficultyForm = new FormGroup({difficulty: new FormControl(this.gameService.gameState.difficulty)});
+  bombs = new FormControl(this.gameService.gameState.bombs);
+  players = new FormControl(this.gameService.gameState.numberOfPlayers);
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -73,22 +73,22 @@ export class SettingsComponent implements AfterViewChecked {
 
   saveSettings() {
     this.gameService.settingsVisible = false;
-    this.gameService.gridWidth = this.width.value || 10;
-    this.gameService.gridHeight = this.height.value || 10;
-    this.gameService.bombs = this.bombs.value || 10;
-    this.gameService.players = this.players.value || 1;
-    this.gameService.difficulty = this.difficultyForm.controls['difficulty'].value || 'easy';
+    this.gameService.gameState.gridWidth = this.width.value || 10;
+    this.gameService.gameState.gridHeight = this.height.value || 10;
+    this.gameService.gameState.bombs = this.bombs.value || 10;
+    this.gameService.gameState.numberOfPlayers = this.players.value || 1;
+    this.gameService.gameState.difficulty = this.difficultyForm.controls['difficulty'].value || 'easy';
     this.gameService.newGame();
   }
 
   closeSettings() {
     this.gameService.settingsVisible = false;
     this.gameService.settingsVisible = false;
-    this.width.setValue(this.gameService.gridWidth);
-    this.height.setValue(this.gameService.gridHeight);
-    this.bombs.setValue(this.gameService.bombs);
-    this.players.setValue(this.gameService.players);
-    this.difficultyForm.controls['difficulty'].setValue(this.gameService.difficulty);
+    this.width.setValue(this.gameService.gameState.gridWidth);
+    this.height.setValue(this.gameService.gameState.gridHeight);
+    this.bombs.setValue(this.gameService.gameState.bombs);
+    this.players.setValue(this.gameService.gameState.numberOfPlayers);
+    this.difficultyForm.controls['difficulty'].setValue(this.gameService.gameState.difficulty);
   }
 
   getMaxBombs() {
