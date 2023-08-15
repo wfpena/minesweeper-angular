@@ -1,7 +1,9 @@
 <div class="board-container">
   <div class="board-header">
     <div>
-        <p style="font-weight: bold;">Difficulty: {{gameService.difficulty}}</p>
+        <p style="font-weight: bold;">
+          Difficulty: <button style="cursor: pointer;" class="tag" [class]="gameService.difficulty" (click)="gameService.settingsVisible = true">{{gameService.difficulty}}</button>
+        </p>
     </div>
   </div>
   <div class="board-header">

@@ -16,7 +16,7 @@ body
 .main-bg-title 
 	display: flex 
 	justify-content: center 
-	align-items: end 
+	align-items: flex-end 
 	flex-direction: column 
 	min-height: 75px 
 p 
@@ -125,7 +125,7 @@ html
 .btn-group 
 	display: flex 
 	align-items: center 
-	justify-content: start 
+	justify-content: flex-start 
 	margin-top: 22px 
 	width: 100% 
 .relative 
@@ -167,3 +167,15 @@ input[type='range']::-webkit-slider-thumb
 	width: 10px
 	background-color: #dfdfdf
 	box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf
+.tag
+	color: white
+	border-radius: 10%
+	padding: 2px
+	&.easy
+		background-color: green
+	&.hard
+		background-color: red
+	&.medium
+		background-color: blue
+	&.custom
+		background-color: blueviolet
