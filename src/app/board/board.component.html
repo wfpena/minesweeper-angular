@@ -62,4 +62,7 @@
   <div class="flex" style="cursor: pointer;">
       <button (click)="gameService.newGame()" class="new-game-btn">🔄New Game</button>
   </div>
+  <div *ngIf="gameService.currentGameState === 'run' && gameService.isTimerRunning" class="flex" style="cursor: pointer;">
+    <button (click)="gameService.saveCurrentGame()" class="new-game-btn">💾Save Game</button>
+</div>
 </div>
