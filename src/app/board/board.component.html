@@ -67,3 +67,12 @@
     <button (click)="gameService.saveCurrentGame()" class="new-game-btn">💾Save Game</button>
 </div>
 </div>
+
+<div *ngIf="gameService.gameSavedVisible">
+  <div class="modal-component">
+      <div class="modal-container dialog-container">
+        <p class="text-2xl font-bold">Games Saved</p>
+        <button (click)="gameService.gameSavedVisible = false" class="btn-basic">Close</button>
+      </div>
+  </div>
+</div>

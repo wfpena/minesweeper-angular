@@ -12,6 +12,7 @@ export class GameService {
   isTimerRunning = false;
   timeInterval = 0;
   settingsVisible = false;
+  gameSavedVisible = false;
   previousGamesVisible = false;
   previousGames: GameState[] = [];
   gameState: GameState = {
@@ -38,9 +39,9 @@ export class GameService {
       return;
     }
     const currentState = this.gameState;
-    // TODO: Add many saved games
     const savedGames: GameState[] = [currentState];
     localStorage.setItem('savedGames', JSON.stringify(savedGames));
+    this.gameSavedVisible = true;
   }
 
   newGame() {
